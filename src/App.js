@@ -11,13 +11,12 @@ Display a list of movies where each movie contains a list of users that favorite
 For detailed instructions, refer to instructions.md.
 */
 const movieTitles = Object.keys(movies).map(movie => movies[movie].name);
+
 const favoritedMovies = profiles.map(profile => {
   const userName = users[profile.userID].name
   const movieName = movies[profile.favoriteMovieID].name;
   return {userName, movieName};
 });
-
-console.log(favoritedMovies);
 
 class App extends Component {
   render() {
