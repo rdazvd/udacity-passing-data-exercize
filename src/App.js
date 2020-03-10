@@ -2,19 +2,22 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
+import {profiles, users, movies} from './_data';
+import MovieList from './MovieList';
+
 /*
 Display a list of movies where each movie contains a list of users that favorited it.
 
 For detailed instructions, refer to instructions.md.
 */
+const movieTitles = Object.keys(movies).map(movie => movies[movie].name);
+const favoritedMovies = profiles.map(profile => {
+  const userName = users[profile.userID].name
+  const movieName = movies[profile.favoriteMovieID].name;
+  return {userName, movieName};
+});
 
-
-		  const likedMovies = profiles.map(
-          	profile => {
-           	 const userName = users[profile.userID].name
-			 const movieName = movies[profile.favoriteMovieID].name;
-             return <li>{userName}'s favorite movie is {movieName}</li>;
-			})}
+console.log(favoritedMovies);
 
 class App extends Component {
   render() {
@@ -24,12 +27,7 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">ReactND - Coding Practice</h1>
         </header>
-        <h2>How Popular is Your Favorite Movie?</h2>
-		<ul>
-		  {for (movie in movies) {
-            
-          }}
-		</ul>
+        <MovieList movieTitles={movieTitles} favoritedMovies={favoritedMovies} />
       </div>
     );
   }
